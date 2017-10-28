@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+    <section id="chart-section"></section>
+    <script src="src/chart.js"></script>
+    <script>
+        var chart = new Chart('chart-section',{
+            data: [],
+            options : {
+                width : 500,
+                height : 500
+            }
+        });
+        var chart2 = new Chart('chart-section',{
+            data :[]
+        });
+        chart.drawRect(210,10,100,300);
+        chart.drawText("굳",300,20, {font: 'Aria 20px'});
+    </script>
+</body>
+</html>
