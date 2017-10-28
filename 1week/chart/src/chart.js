@@ -36,3 +36,10 @@ Chart.prototype.drawText =
         this.ctx.fillStyle = options.fillStyle || '#000000';
         this.ctx.fillText(text,x,y);
     };
+
+function BarChart(ctx, config) {
+    // Chart()                          둘다 함수를 불러오지만, call은 여러변수를 넣을 수 있음
+    Chart.call(this,ctx,config);        //상속, 여기까지만 쓰면 부모에 있는 것만 가져옮.
+}
+
+BarChart.prototype = Object.create(Chart.prototype); // 프로토타입 체인, Chart의 프로토타입에 있는 것들을 가져옮.
