@@ -204,3 +204,14 @@ BarChart.prototype = Object.create(Chart.prototype); // 프로토타입 체인, 
 <li> 기본 : window
 <li> 객체의 경우 : 객체 자체를 가르킴
 <li> click 시 : window
+
+---
+
+# HTML CSS
+
+```javascript
+var a = function(ab) {
+  console.log(ab);
+}
+
+```
