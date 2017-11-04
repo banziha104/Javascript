@@ -104,3 +104,49 @@ const b = [4,5,6]
 const c = [...a,...b] // 1,2,3,4,5,6
 
 ```
+
+# default 처리
+
+```javascript
+function buildUserInfo({name = '-',email = '-'}={}) {
+  
+}
+
+buildUserInfo({
+ name : 5
+});
+
+buildUserInfo();
+```
+
+```javascript
+let product = {
+    name: 'n',
+    price : 200,
+    review : [
+        {text : 'good'}
+    ]
+}
+
+let {name , price , review : [first, ...restReview]} = product;
+
+console.log(name , price , first, restReview);
+
+a(product);
+```
+
+# Arrow Funtion
+
+```javascript
+const exponetx = exp => {return 10};
+
+const add = (a,b) => a + b;
+
+const exponet = exp => base => base ** exp;
+```
+
+```javascript
+const sum = (...args) => args.reduce((a,b) => a+b);
+```
+
+# 객체와 클래스

@@ -39,8 +39,8 @@
 
     $(function() {
         const mainEl = $('main')
-            , resultBoardEl = $('#result-board');
-
+            , resultBoardEl = $('#result-board')
+            , buildResultTemplete
         $('#start-btn').click(function(e) {
             const digit = $('#digit').val();
             if (digit) {
@@ -84,11 +84,3 @@ function avg(a, ...args) {
     console.log(a);
     // console.log(args.length === 0);
 }
-const a = [1,2,3]
-const b = [4,5,6]
-const c = [...a, ...b]
-console.log(c);
-avg(...[1,2,3])
-avg(1,2,3)
-avg(2,3)
-avg(1)
