@@ -149,4 +149,131 @@ const exponet = exp => base => base ** exp;
 const sum = (...args) => args.reduce((a,b) => a+b);
 ```
 
-# 객체와 클래스
+# 객체
+
+```javascript
+let cart = {
+    product,      //product : product
+    getProduct(){ //getProduct : function() {}
+        console.log(this.product);
+    }
+}
+```
+
+```javascript
+let cartItem = {
+    id: 'product1',
+    amount : 10
+};
+
+let cart = {
+   [cartItem.id] : cartItem, // 대괄호를 사용해야만 다른 객체에 접근할 수 있음
+   addProduct(product){
+       
+   }
+}
+```
+
+# Object.assign
+
+```javascript
+let a = {x:1};
+let b = {c:2};
+Object.assign(a,b) // {x:1 , c:2}로 객체가 합쳐짐
+```
+
+# getter & setter
+
+```javascript
+let a = {
+    x : 1,
+    _c : 0,
+    get c(){
+        return this._c;
+    },
+    set c(v){
+        return this._c = v;
+    }
+}
+a.c = '2';
+```
+
+# 클래스 
+
+```javascript
+function Person(name) {
+  this.name;
+} 
+Person.prototype.say = a => {};
+
+class Person{
+    constructor(name){
+        this.name = name;
+    }
+    say(){
+        
+    }
+}
+
+class Korean extends Person{
+    constructor(name){
+        super(name);
+        this.name = name;
+    }
+    kimchi(){
+        console.log('kimchi')
+    }
+    static live(){ // Korean.live로 선언가능
+        
+    }
+}
+```
+
+# Symbol
+
+자바의 7번째 타입이고 리터럴 표현식이 없음.
+
+
+```javascript
+const symbol = Symbol(); // 유니크한 자료형이 만들어짐;
+const user = {
+    name,
+    [symbol] : "ame"
+}
+```
+
+# Iterable 
+
+문자열이나 배열과 같이 무언가를 담고있는 것의 행위에 대한 규약
+문자열과 배열은 iterable이다
+interable은 for ... of 와 spread연산자 사용이 가능.
+
+```javascript
+const iterable = {
+    [Symbol.interator](){
+        return{
+            next(){
+                return {
+                    value : 1,
+                    done : false
+                }
+            }
+        }
+    }
+}
+
+var d = [1,2 ...iterable];
+d[3];
+```
+
+```javascript
+function a() {
+  function b() {
+    function c() {
+      function d() {
+        
+      }
+    }
+  }
+}
+```

@@ -40,7 +40,12 @@
     $(function() {
         const mainEl = $('main')
             , resultBoardEl = $('#result-board')
-            , buildResultTemplete
+            , buildResultTemplete = (guess,result) =>
+                `<li class="list-group-item">
+                                ${guess}
+                                <span class="badge">${result}</span>                            
+                             </li>`;
+
         $('#start-btn').click(function(e) {
             const digit = $('#digit').val();
             if (digit) {
@@ -52,16 +57,13 @@
         function startGame(digit) {
             const baseball = new Baseball(digit);
             console.log(baseball.answer);
-            $('input#guess').keypress(function(e) {
+            $('input#guess').keypress(e => {
                 if (e.which === 13) {
-                    const guessNum = this.value.split(''),
+                    const guessNum = this.value.split('')
+                            .map(v => Number(v)),
                         result = baseball.getResult(guessNum)
-                    resultTemplate =
-                        `<li class="list-group-item">
-                                ${this.value}
-                                <span class="badge">${result}</span>                            
-                             </li>`
-                    resultBoardEl.append(resultTemplate);
+
+                    resultBoardEl.append(buildResultTemplete(this.value,result));
                     if (result === '3S0B') {
                         alert(`${this.value} 정답을 맞추셨습니다`);
                         resetGame();

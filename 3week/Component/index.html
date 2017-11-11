@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Drawer Componet</title>
+    <style>
+        fc-drawer{
+            display: block;
+            position: fixed;
+            top:0;
+            bottom:0;
+            right:0;
+            width:320px;
+            box-shadow: 0 0 36px 0 rgba(0,0,0,0.1);
+            transition: ;
+        }
+        fc-drawer .heading{
+            text-align: right;
+            padding: 0 4px;
+        }
+        fc-drawer button {
+            border: none;
+            background-color: white;
+            color: red;
+            font-size:10px;
+            font-weight:500;
+        }
+    </style>
+</head>
+<body>
+<button id="drawer-opened">open drawer</button>
+<fc-drawer>
+    <ul>
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+        <li>item4</li>
+        <li>item5</li>
+        <button>click</button>
+    </ul>
+</fc-drawer>
+<script>
+    class FcDrawer extends HTMLElement {
+        static get observedAttributes(){
+            return ['opened'];
+        }
+        constructor() {
+            super();
+            const shadowRoot = this.attachShadow({mode:'open'});
+            shadowRoot.innerHTML = '<div class="heading">' +
+                '   <button id="closed-btn">X</button> ' +
+                '</div>';
+            this.addEventListener('click', e=>{
+                if(e.target.id === 'closed-btn'){
+                    console.log("btn clicked");
+                    this.opened = false;
+                }
+            });
+        }
+        get opened(){
+            return this.hasAttribute('opened'); //어트리뷰트를 만듬
+        }
+        set opened(val){
+            if(val === '' || val === true || val === 'true'){
+                this.setAttribute('opened','');
+                this.style.transform = 'translateX(0px)'
+            }
+        }
+        connectedCallback(){ // 연결 되는 콜백함수
+            this.style.display = 'block';
+        }
+        disconnectedCallback(){ //엘리먼트가 삭제될때 나오는 것
+            console.log('destoryed');
+        }
+        attributeChangedCallback(name, oldValue,newValue){//observedAttributes의 값이 변경될때마다 호출됨.
+            if(name === 'opened' && oldValue !== newValue){
+                this.opened = newValue;
+            }
+        }
+    }
+
+    window.customElements.define('fc-drawer', FcDrawer)//
+</script>
+<script>
+
+</script>
+</body>
+</html>
